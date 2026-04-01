@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hayden Dosseh — EE Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0d0e0f;
+    --bg2: #141618;
+    --bg3: #1c1f22;
+    --amber: #f5a623;
+    --amber-dim: #a86f12;
+    --amber-glow: rgba(245,166,35,0.12);
+    --white: #e8e4dc;
+    --muted: #7a7670;
+    --green: #4ecb8d;
+    --border: rgba(245,166,35,0.18);
+    --mono: 'IBM Plex Mono', monospace;
+    --display: 'Syne', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(245,166,35,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,166,35,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 2.5rem;
+    background: rgba(13,14,15,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--amber); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2.5rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 span { color: var(--amber); }
+
+  .hero-sub {
+    font-family: var(--body);
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--amber);
+    border: 1px solid var(--border);
+    background: var(--amber-glow);
+    padding: 0.35rem 0.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.75rem 1.8rem;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: var(--bg);
+    font-weight: 600;
+  }
+
+  .btn-primary:hover { background: #ffc04a; }
+
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+
+  /* STAT ROW */
+  .stats {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .stat {
+    padding: 2rem 2.5rem;
+    border-right: 1px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: 1rem;
+  }
+
+  /* PROJECTS GRID */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+  }
+
+  .project-card {
+    background: var(--bg);
+    padding: 2rem;
+    transition: background 0.25s;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-card:hover { background: var(--bg3); }
+
+  /* Featured card spans full width */
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .project-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--bg3);
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-img-placeholder {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: center;
+    padding: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .project-img-placeholder span {
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.4;
+  }
+
+  .project-status {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .project-status.active { color: var(--green); }
+  .project-status.active::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 1.5s infinite;
+  }
+
+  .project-status.complete { color: var(--muted); }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .project-type {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h3 {
+    font-family: var(--display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .project-card.featured h3 { font-size: 1.6rem; }
+
+  .project-desc {
+    font-family: var(--body);
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .project-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .project-bullets li {
+    font-family: var(--body);
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .project-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+  }
+
+  .metric {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--amber);
+    background: var(--amber-glow);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.55rem;
+    margin: 0.15rem 0.15rem 0 0;
+  }
+
+  .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    border: 1px solid rgba(122,118,112,0.3);
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+  }
+
+  .skill-group {
+    background: var(--bg);
+    padding: 2rem;
+  }
+
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .skill-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--body);
+    font-size: 0.84rem;
+    color: var(--white);
+  }
+
+  .skill-bar-wrap {
+    width: 90px;
+    height: 3px;
+    background: var(--bg3);
+  }
+
+  .skill-bar {
+    height: 100%;
+    background: var(--amber);
+  }
+
+  /* EXPERIENCE */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .exp-item {
+    padding: 1.8rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-role {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .exp-org {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--amber);
+    margin-top: 0.2rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  .exp-desc {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .about-text strong { color: var(--white); }
+
+  .about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .about-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .detail-key {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .detail-val {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* FOOTER / CONTACT */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 3rem 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-name {
+    font-family: var(--display);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--amber); }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-label { animation: fadeUp 0.5s ease 0.1s both; }
+  h1 { animation: fadeUp 0.5s ease 0.2s both; }
+  .hero-sub { animation: fadeUp 0.5s ease 0.3s both; }
+  .hero-tags { animation: fadeUp 0.5s ease 0.4s both; }
+  .hero-cta { animation: fadeUp 0.5s ease 0.5s both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 800px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 3.5rem 1.5rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">HD / EE Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:hayden.dosseh@bison.howard.edu">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">Electrical Engineer · Howard University</p>
+  <h1>Hayden<br/><span>Dosseh</span></h1>
+  <p class="hero-sub">
+    I build hardware that works in the real world — from FPGA-based digital systems and
+    embedded MCU firmware to PCB design and low-power IoT networks. Currently pursuing a
+    B.S. in Electrical Engineering (GPA 3.83) and conducting research at UC San Diego's
+    Kastner Research Group.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Embedded Systems</span>
+    <span class="tag">FPGA / VHDL</span>
+    <span class="tag">PCB Design (KiCAD)</span>
+    <span class="tag">STM32 MCU</span>
+    <span class="tag">LoRa / LoRaWAN</span>
+    <span class="tag">Hardware Security</span>
+    <span class="tag">Edge AI / TinyML</span>
+    <span class="tag">SystemVerilog</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="https://github.com/Hdosseh1" target="_blank" class="btn btn-outline">GitHub</a>
+    <a href="https://linkedin.com/in/hayden-dosseh/" target="_blank" class="btn btn-outline">LinkedIn</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">3.83</div>
+    <div class="stat-label">GPA — Dean's List</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">8+</div>
+    <div class="stat-label">Hardware Projects</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">70%</div>
+    <div class="stat-label">LoRa compression gain</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Active Research Programs</div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Projects</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- FEATURED: LoRAHEALTH -->
+    <div class="project-card featured">
+      <div>
+        <div class="project-meta">
+          <span class="project-status active">In Progress</span>
+          <span class="project-type">Personal · Hardware + Firmware</span>
+        </div>
+        <h3 style="margin-top:0.8rem;">LoRAHEALTH</h3>
+        <p class="project-desc" style="margin-top:0.6rem;">
+          A solar-powered, low-cost wearable health monitoring network for remote communities in Ghana and similar regions with limited healthcare infrastructure. The device collects vitals — heart rate, SpO₂, temperature, motion — and transmits ultra-compact packets over LoRa to a clinic gateway, enabling real-time triage and SMS alerting even without reliable mobile networks.
+        </p>
+        <ul class="project-bullets" style="margin-top:0.8rem;">
+          <li>STM32L4 MCU with SX1262 LoRa radio; full LoRaWAN OTAA stack</li>
+          <li>On-device int8 quantized 1D Conv autoencoder (TFLite Micro / CMSIS-NN) for anomaly detection and compression — typical normal frame: 12–14 B</li>
+          <li>Store-and-forward queue (200+ frames in FRAM/flash) for gateway loss resilience</li>
+          <li>Solar + MPPT charging; power-positive design targeting ≤16 mAh/day total draw</li>
+          <li>ChirpStack LoRaWAN server → FastAPI backend → Grafana dashboard + SMS/USSD alerts</li>
+          <li>Pilot deployment plan: 20 devices, 1 gateway, $2,000 BOM for underserved community rollout</li>
+        </ul>
+        <div style="margin-top:0.8rem;">
+          <span class="metric">≥0.90 AUROC target</span>
+          <span class="metric">≤20 B/uplink</span>
+          <span class="metric">100–130 day battery</span>
+          <span class="metric">≤10 ms inference</span>
+        </div>
+        <div class="stack-tags" style="margin-top:1.2rem;">
+          <span class="stack-tag">STM32L4</span>
+          <span class="stack-tag">SX1262 LoRa</span>
+          <span class="stack-tag">LoRaWAN</span>
+          <span class="stack-tag">TFLite Micro</span>
+          <span class="stack-tag">CMSIS-NN</span>
+          <span class="stack-tag">FastAPI</span>
+          <span class="stack-tag">ChirpStack</span>
+          <span class="stack-tag">C Firmware</span>
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">PCB Design</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="project-img" id="lorahealth-img1">
+          <div class="project-img-placeholder">
+            <span>📡</span>
+            System architecture diagram<br/>or device photo
+          </div>
+        </div>
+        <div class="project-img" id="lorahealth-img2">
+          <div class="project-img-placeholder">
+            <span>📊</span>
+            Dashboard / waveform screenshot
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Acoustic Species Collar -->
+    <div class="project-card">
+      <div class="project-meta">
+        <span class="project-status active">In Progress</span>
+        <span class="project-type">Research · Kastner REU</span>
+      </div>
+      <h3>Acoustic Species Collar</h3>
+      <ul class="project-bullets" style="margin-top:0.4rem;">
+        <li>2D convolutional autoencoder (librosa + PyTorch) for audio compression and transmission over LoRa on STM32 MCU — achieving <strong style="color:var(--amber)">70% reduction</strong> in data footprint</li>
+        <li>NAND flash data loss management research, reducing projected memory loss by 20%</li>
+        <li>Real-world deployment on STM32 MCU board for wildlife monitoring in conservation settings</li>
+      </ul>
+      <div style="margin-top:0.6rem;">
+        <span class="metric">70% compression</span>
+        <span class="metric">20% loss reduction</span>
+      </div>
+      <div class="project-img" style="margin-top:0.8rem;">
+        <div class="project-img-placeholder">
+          <span>🔊</span>
+          Collar photo / audio waveform
+        </div>
+      </div>
+      <div class="stack-tags">
+        <span class="stack-tag">STM32</span>
+        <span class="stack-tag">LoRa</span>
+        <span class="stack-tag">PyTorch</span>
+        <span class="stack-tag">librosa</span>
+        <span class="stack-tag">Python3</span>
+        <span class="stack-tag">Embedded C</span>
+      </div>
+    </div>
+
+    <!-- FPGA Hardware Accelerator -->
+    <div class="project-card">
+      <div class="project-meta">
+        <span class="project-status active">In Progress</span>
+        <span class="project-type">Research · Howard University</span>
+      </div>
+      <h3>FPGA Hardware Accelerator</h3>
+      <p class="project-desc">
+        Undergraduate research project building a custom hardware accelerator on FPGA in collaboration with a Howard faculty advisor. Responsible for full UART communication integration, enabling high-speed data transfer between the accelerator and host systems.
+      </p>
+      <ul class="project-bullets" style="margin-top:0.4rem;">
+        <li>UART controller design and integration in VHDL — including baud rate generation, TX/RX state machines, and FIFO buffering</li>
+        <li>Timing closure and simulation on Vivado; functional verification with testbenches</li>
+        <li>Interdisciplinary collaboration within a research team</li>
+      </ul>
+      <div class="project-img" style="margin-top:0.8rem;">
+        <div class="project-img-placeholder">
+          <span>⚡</span>
+          Block diagram / Vivado screenshot
+        </div>
+      </div>
+      <div class="stack-tags">
+        <span class="stack-tag">VHDL</span>
+        <span class="stack-tag">FPGA</span>
+        <span class="stack-tag">UART</span>
+        <span class="stack-tag">Vivado</span>
+        <span class="stack-tag">Digital Logic</span>
+      </div>
+    </div>
+
+    <!-- HallPass -->
+    <div class="project-card">
+      <div class="project-meta">
+        <span class="project-status active">In Progress</span>
+        <span class="project-type">Research · Kastner REU</span>
+      </div>
+      <h3>HallPass — SoC Access Control</h3>
+      <p class="project-desc">
+        Hardware security research preventing unauthorized information access on System-on-Chip modules by designing and simulating multiple access control architectures with real performance-resource tradeoffs.
+      </p>
+      <ul class="project-bullets" style="margin-top:0.4rem;">
+        <li>3 distinct access control models designed in SystemVerilog and simulated on Vivado</li>
+        <li>Python3 policy engine restricting unauthorized proxy reads on SoC</li>
+        <li>Evaluated each model against resource utilization, latency, and security guarantees</li>
+      </ul>
+      <div class="stack-tags">
+        <span class="stack-tag">SystemVerilog</span>
+        <span class="stack-tag">Vivado</span>
+        <span class="stack-tag">Python3</span>
+        <span class="stack-tag">FPGA</span>
+        <span class="stack-tag">HW Security</span>
+      </div>
+    </div>
+
+    <!-- Alien Boom -->
+    <div class="project-card">
+      <div class="project-meta">
+        <span class="project-status complete">Completed May 2025</span>
+        <span class="project-type">Digital Design</span>
+      </div>
+      <h3>Alien Boom — FPGA Game</h3>
+      <p class="project-desc">
+        Full game designed in VHDL on a Nexys-A7 100T FPGA board using sequential and combinational logic — from game logic to VGA display output, all implemented in hardware description language.
+      </p>
+      <ul class="project-bullets" style="margin-top:0.4rem;">
+        <li>Custom VGA controller outputting live video from FPGA to monitor</li>
+        <li>Player input via switches and buttons; score tracking on 7-segment LED display</li>
+        <li>State machine architecture handling game loop, collision detection, and scoring</li>
+      </ul>
+      <div class="project-img" style="margin-top:0.8rem;">
+        <div class="project-img-placeholder">
+          <span>🎮</span>
+          Game demo photo / VGA output screenshot
+        </div>
+      </div>
+      <div class="stack-tags">
+        <span class="stack-tag">VHDL</span>
+        <span class="stack-tag">Nexys-A7</span>
+        <span class="stack-tag">VGA</span>
+        <span class="stack-tag">Digital Logic</span>
+        <span class="stack-tag">Vivado</span>
+      </div>
+    </div>
+
+    <!-- Light Sensor PCB -->
+    <div class="project-card">
+      <div class="project-meta">
+        <span class="project-status complete">Completed Dec 2023</span>
+        <span class="project-type">PCB Design</span>
+      </div>
+      <h3>Light Sensor PCB</h3>
+      <p class="project-desc">
+        Designed, laid out, and manufactured a modular light sensor PCB using KiCAD — intended to integrate cleanly into larger circuit assemblies and appliances.
+      </p>
+      <ul class="project-bullets" style="margin-top:0.4rem;">
+        <li>Full schematic capture → PCB layout → Gerber generation workflow in KiCAD</li>
+        <li>Hand-soldered SMD and through-hole components on fabricated board</li>
+        <li>Modular design with standard connector footprints for downstream integration</li>
+      </ul>
+      <div class="project-img" style="margin-top:0.8rem;">
+        <div class="project-img-placeholder">
+          <span>🔌</span>
+          PCB photo / KiCAD layout screenshot
+        </div>
+      </div>
+      <div class="stack-tags">
+        <span class="stack-tag">KiCAD</span>
+        <span class="stack-tag">PCB Layout</span>
+        <span class="stack-tag">Soldering</span>
+        <span class="stack-tag">Schematic</span>
+      </div>
+    </div>
+
+  </div><!-- /projects-grid -->
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Technical Skills</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Hardware & EE</div>
+      <ul class="skill-list">
+        <li>PCB Design (KiCAD) <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></li>
+        <li>Embedded Systems <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></li>
+        <li>STM32 MCU <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></li>
+        <li>Circuit Theory <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></li>
+        <li>LTSpice <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Digital Design & FPGA</div>
+      <ul class="skill-list">
+        <li>VHDL <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></li>
+        <li>SystemVerilog <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></li>
+        <li>Vivado <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></li>
+        <li>FPGA Implementation <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></li>
+        <li>Digital Logic Design <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Software & AI</div>
+      <ul class="skill-list">
+        <li>Python 3 <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></li>
+        <li>C / C++ <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></li>
+        <li>PyTorch <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></li>
+        <li>TinyML / TFLite <div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></li>
+        <li>LoRa / LoRaWAN <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="exp-list">
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Student Researcher — Hardware Security</div>
+        <div class="exp-org">Kastner Research Group REU 2025 · UC San Diego</div>
+        <div class="exp-desc">Developed hardware security systems to prevent unintended proxies on System-on-Chip. Built smart collar using STM32 MCU for wildlife monitoring. Conducting research in both hardware security and embedded AI.</div>
+      </div>
+      <div class="exp-date">Jun 2025 – Present</div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Student Researcher — Biomedical AI</div>
+        <div class="exp-org">HuBMAP FUSION · Howard University</div>
+        <div class="exp-desc">Researched AI-based spatial-omics tools, improving tissue mapping accuracy by 15%. Applied ML to analyze biomedical imaging data, enabling faster pattern detection across 500+ cell samples.</div>
+      </div>
+      <div class="exp-date">May 2025 – Jun 2025</div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">ML/AI Student Researcher — TinyML</div>
+        <div class="exp-org">AIM AHEAD DSTC · Howard University</div>
+        <div class="exp-desc">Developed smartwatch software for detecting signs of illness in Black individuals using TinyML. Earned three Harvard/EdX certificates in TinyML Fundamentals, Deployment, and Applications.</div>
+      </div>
+      <div class="exp-date">Jan 2024 – Mar 2024</div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Design Engineer / VLSI Engineer</div>
+        <div class="exp-org">IEEE HOPE Program</div>
+        <div class="exp-desc">Designed schematics, footprints, and PCBs using KiCAD. Hands-on soldering of SMD and through-hole components. Contributed to VLSI circuit design using Logisim Evolution for an ATM interface system.</div>
+      </div>
+      <div class="exp-date">Sept 2023 – Nov 2023</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>About</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div>
+      <p class="about-text">
+        I'm a junior Electrical Engineering student at <strong>Howard University</strong> with a minor in Biology,
+        passionate about building hardware that solves real problems — whether that's a wearable health
+        monitor for remote communities in Ghana, a smart wildlife collar, or an FPGA-based security system
+        for System-on-Chip.
+      </p>
+      <br/>
+      <p class="about-text">
+        My work sits at the intersection of <strong>embedded systems, digital design, and edge AI</strong> — I'm most
+        excited when a project requires me to think across the full stack, from circuit design and PCB layout
+        to firmware and machine learning model deployment on a microcontroller.
+      </p>
+      <br/>
+      <p class="about-text">
+        Outside the lab, I play trombone in the <strong>Howard University SHOWTIME Marching Band</strong>. I speak
+        English fluently and French at a tourist level. I'm originally from West Africa and deeply motivated
+        by technology's potential to improve lives in underserved communities.
+      </p>
+    </div>
+    <div class="about-details">
+      <div class="about-detail-row">
+        <span class="detail-key">Institution</span>
+        <span class="detail-val">Howard University</span>
+      </div>
+      <div class="about-detail-row">
+        <span class="detail-key">Degree</span>
+        <span class="detail-val">B.S. Electrical Engineering</span>
+      </div>
+      <div class="about-detail-row">
+        <span class="detail-key">Minor</span>
+        <span class="detail-val">Biology</span>
+      </div>
+      <div class="about-detail-row">
+        <span class="detail-key">GPA</span>
+        <span class="detail-val">3.83 — Dean's List</span>
+      </div>
+      <div class="about-detail-row">
+        <span class="detail-key">Graduation</span>
+        <span class="detail-val">May 2027</span>
+      </div>
+      <div class="about-detail-row">
+        <span class="detail-key">Email</span>
+        <span class="detail-val" style="font-size:0.8rem;">hayden.dosseh@bison.howard.edu</span>
+      </div>
+      <div class="about-detail-row">
+        <span class="detail-key">GitHub</span>
+        <span class="detail-val">github.com/Hdosseh1</span>
+      </div>
+      <div class="about-detail-row">
+        <span class="detail-key">Languages</span>
+        <span class="detail-val">English · French</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Hayden Emmanuel Dosseh</div>
+  <div class="footer-links">
+    <a href="mailto:hayden.dosseh@bison.howard.edu">Email</a>
+    <a href="https://linkedin.com/in/hayden-dosseh/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Hdosseh1" target="_blank">GitHub</a>
+    <a href="tel:2029265558">(202) 926-5558</a>
+  </div>
+  <div class="footer-copy">© 2025 Hayden Dosseh</div>
+</footer>
+
+</body>
+</html>
