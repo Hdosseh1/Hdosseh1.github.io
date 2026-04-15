@@ -858,6 +858,33 @@
       </div>
     </div>
 
+              <!-- Kapcher -->
+    <div class="project-card">
+      <div class="project-meta">
+        <span class="project-status complete">Completed Apr 2026</span>
+        <span class="project-type">Hackathon · MorganHacks 2026</span>
+      </div>
+      <h3>Kapcher — Biometric Auth Device</h3>
+      <p class="project-desc">
+        A physical hardware authentication device that authorizes payments using facial recognition and hand gesture verification — all computed on-device. Your biometric never touches the internet.
+      </p>
+      <ul class="project-bullets" style="margin-top:0.4rem;">
+        <li>Raspberry Pi 4 running MediaPipe face + gesture ML inference entirely on-device; no cloud, no biometric transmission</li>
+        <li>16×2 LCD controller written from scratch — direct GPIO bit-banging of the HD44780 protocol with no I2C backpack</li>
+        <li>Flask API server auto-starts on boot; DTW (Dynamic Time Warping) for gesture matching against encrypted local landmark reference</li>
+        <li>Full Stripe Payment Intents integration — funds held on auth request, only captured on hardware confirmation signal</li>
+      </ul>
+      <div class="stack-tags">
+        <span class="stack-tag">Raspberry Pi 4</span>
+        <span class="stack-tag">MediaPipe</span>
+        <span class="stack-tag">GPIO / HD44780</span>
+        <span class="stack-tag">Python / Flask</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Stripe API</span>
+        <span class="stack-tag">DTW</span>
+      </div>
+    </div>
+
     <!-- Alien Boom -->
     <div class="project-card">
       <div class="project-meta">
@@ -915,32 +942,6 @@
       </div>
     </div>
 
-          <!-- Kapcher -->
-    <div class="project-card">
-      <div class="project-meta">
-        <span class="project-status complete">Completed Apr 2026</span>
-        <span class="project-type">Hackathon · MorganHacks 2026</span>
-      </div>
-      <h3>Kapcher — Biometric Auth Device</h3>
-      <p class="project-desc">
-        A physical hardware authentication device that authorizes payments using facial recognition and hand gesture verification — all computed on-device. Your biometric never touches the internet.
-      </p>
-      <ul class="project-bullets" style="margin-top:0.4rem;">
-        <li>Raspberry Pi 4 running MediaPipe face + gesture ML inference entirely on-device; no cloud, no biometric transmission</li>
-        <li>16×2 LCD controller written from scratch — direct GPIO bit-banging of the HD44780 protocol with no I2C backpack</li>
-        <li>Flask API server auto-starts on boot; DTW (Dynamic Time Warping) for gesture matching against encrypted local landmark reference</li>
-        <li>Full Stripe Payment Intents integration — funds held on auth request, only captured on hardware confirmation signal</li>
-      </ul>
-      <div class="stack-tags">
-        <span class="stack-tag">Raspberry Pi 4</span>
-        <span class="stack-tag">MediaPipe</span>
-        <span class="stack-tag">GPIO / HD44780</span>
-        <span class="stack-tag">Python / Flask</span>
-        <span class="stack-tag">React</span>
-        <span class="stack-tag">Stripe API</span>
-        <span class="stack-tag">DTW</span>
-      </div>
-    </div>
   </div><!-- /projects-grid -->
 </section>
 
